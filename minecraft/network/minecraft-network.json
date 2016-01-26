@@ -1,0 +1,67 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+ "parameters": {
+    "location": {
+      "type": "string",
+	  "defaultValue": "North Europe",
+      "metadata": {
+        "description": "Deployment location"
+      }
+    },
+    "vnetName": {
+      "type": "string",
+      "defaultValue": "minecraft-vnet",
+      "metadata": {
+        "description": "Isolated VNet for Minecraft server"
+      }
+    },
+    "vnetAddressSpace": {
+      "type": "string",
+      "defaultValue": "10.255.255.247/29",
+      "metadata": {
+        "description": "VNet address space"
+      }
+    },
+    "subnetAddressSpace": {
+      "type": "string",
+      "defaultValue": "10.255.255.247/29",
+      "metadata": {
+        "description": "Subnet address space"
+      }
+    },
+    "subnetName": {
+      "type": "string",
+      "defaultValue": "Minecraft-subnet",
+      "metadata": {
+        "description": "Subnet for Minecraft server"
+      }
+    }
+  },
+   "variables": {
+    "apiVersion": "2015-06-15"
+  },
+  "resources": [
+    {
+      "apiVersion": "[variables('apiVersion')]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "[parameters('vnetName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[parameters('vnetAddressSpace')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[parameters('subnetName')]",
+            "properties": {
+              "addressPrefix": "[parameters('subnetAddressSpace')]"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

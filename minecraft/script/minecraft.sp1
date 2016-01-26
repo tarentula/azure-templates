@@ -1,0 +1,2 @@
+New-AzureRmResourceGroup -Name "Minecraft" -Location "North Europe"
+New-AzureRmResourceGroupDeployment -Name TrialDeployment -ResourceGroupName "Minecraft" -TemplateFile minecraft-network.json
