@@ -40,7 +40,7 @@
     }
   },
   "variables": {
-    "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'saminecraftvm')]",
+    "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'samcvm')]",
     "sizeOfDiskInGB": "100",
     "dataDisk1VhdName": "data1",
     "location": "[resourceGroup().location]",
